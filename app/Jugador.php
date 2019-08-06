@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jugador extends Model
 {
-    public $table = "ranking";
+    public $table = "players";
     public $primaryKey = "id";
     public $timestamps = "false";
     public $guarded  = [];

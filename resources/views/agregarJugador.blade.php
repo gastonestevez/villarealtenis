@@ -7,14 +7,14 @@
         </div>
         
         <div class=formYtabla>
-            <div class="formulario col-md-6">
+            <div class="formulario col-md-4">
                 
                 <form action="{{ url('agregarJugador') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <h4><i class="fas fa-edit"></i> Formulario</h4>
                 <div class="form-group">
                     <label for="nombre"><i class="fas fa-angle-double-right"></i> Nombre</label><br>
-                    <input name="Nombre" class="form-control" type="text" placeholder="Nombre">
+                    <input name="Nombre" class="form-control" type="text" placeholder="Nombre" require>
                 </div>
                 <div class="form-group">
                         <label for="cumple"><i class="fas fa-angle-double-right"></i> Cumple</label><br>
@@ -45,7 +45,7 @@
                 </form>
             </div>
             
-            <div class="tabla ml-1 col-md-6">
+            <div class="tabla ml-1 col-md-8">
                 <h4><i class="fas fa-edit"></i> Ranking</h4>
                 <div class="formulario">
                         <form action="">
@@ -57,7 +57,9 @@
                     <thead>
                         <tr>
                             <th>Puesto</th>
+                            <th>Avatar</th>
                             <th>Nombre</th>
+                            <th>Celular</th>
                             <th>Editar</th>
                         </tr>
                     </thead>
@@ -68,7 +70,13 @@
                             {{ $jugador->Puesto }}
                         </td>
                         <td>
+                            <img class="avatar" src="/storage/{{ $jugador->Avatar }}" alt="avatar"> 
+                        </td>
+                        <td>
                             {{ $jugador->Nombre }} 
+                        </td>
+                        <td>
+                            {{ $jugador->Telefono }}
                         </td>
                         <td>
                             <a href="{{ url('editarJugador/'.$jugador->id) }}"><i class="fas fa-edit"></i></a>
@@ -98,6 +106,9 @@
                         console.log("borrarJugador/"+$(this).attr("id"));
                         alert("Usuario borrado! :D");
                         location.reload();
+                    })
+                    .fail(function(data){
+                        alert('uh');
                     });
                 }
             });

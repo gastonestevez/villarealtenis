@@ -16,7 +16,7 @@
                                 <tr>
                                     <td>
                                         <?php if(!empty($jugador->Avatar)): ?>
-                                       <img class="avatar" src="/storage/{{ $jugador->Avatar }}" alt="avatar"> 
+                                       <img class="avatar" src="{{ $jugador->Avatar }}" alt="avatar"> 
                                        <?php endif ?>
                                     </td>
                                     <td class="j2nombre">
@@ -51,10 +51,10 @@
                                     {{ $match->created_at }}
                                 </td>
                                 <td>
-                                    {{ $match->jugador1()->get()->first()->Nombre }} 
+                                    {{ $match->jugador1()->get()->first() }} 
                                 </td>
                                 <td>
-                                    {{ $match->jugador2()->get()->first()->Nombre }} 
+                                    {{ $match->jugador2()->get()->first() }} 
                                 </td>
                                 <td>
                                     {{ $match->set1 }} 

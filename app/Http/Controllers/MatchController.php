@@ -30,9 +30,9 @@ class MatchController extends Controller
         $match->set3 = $set3;
         $match->idj1 = $idJugador1;
         $match->idj2 = $idJugador2;
-        $match->save();
 
         if($ganador==1){
+            $match->ganador = $jugador1->id;
             if($jugador1->Puesto > $jugador2->Puesto){
                 $intervaloDeJugadores = Jugador::where('Puesto','>=',$jugador2->Puesto)
                 ->where('Puesto','<',$jugador1->Puesto)->get();
@@ -46,6 +46,7 @@ class MatchController extends Controller
                 $jugador1->save();
             }
         }else{
+            $match->ganador = $jugador2->id;
             if($jugador2->Puesto > $jugador1->Puesto){
                 $intervaloDeJugadores = Jugador::where('Puesto','>=',$jugador1->Puesto)
                 ->where('Puesto','<',$jugador2->Puesto)->get();
@@ -59,6 +60,7 @@ class MatchController extends Controller
                 $jugador2->save();            
             }
         }
+        $match->save();
         return redirect("/match");
     }
 

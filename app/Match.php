@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model
 {
-    public $table = "match";
+    public $table = "matches";
     public $primaryKey = "id";
     public $timestamps = "false";
     public $guarded  = [];

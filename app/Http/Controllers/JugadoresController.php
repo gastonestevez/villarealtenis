@@ -33,10 +33,11 @@ class JugadoresController extends Controller
         $jugadorNuevo->Email = $req['Email'];
         $jugadorNuevo->Instagram = $req['Instagram'];
         $jugadorNuevo->Cumple = $req['Cumple'];
-        
-        $path = $req->file("Avatar")->store("public");
-        $nombreDeArchivo = basename($path);
-        $jugadorNuevo->Avatar = $nombreDeArchivo;
+        if($req->file("Avatar") != null){
+            $path = $req->file("Avatar")->store("public");
+            $nombreDeArchivo = basename($path);
+            $jugadorNuevo->Avatar = $nombreDeArchivo;
+        }
         
 
         $jugadorNuevo->save();
@@ -59,9 +60,11 @@ class JugadoresController extends Controller
         $jugadorNuevo->Email = $req['Email'];
         $jugadorNuevo->Instagram = $req['Instagram'];
         $jugadorNuevo->Cumple = $req['Cumple'];
-        $path = $req->file("Avatar")->store("public");
-        $nombreDeArchivo = basename($path);
-        $jugadorNuevo->Avatar = $nombreDeArchivo;
+        if($req->file("Avatar")!= null){
+            $path = $req->file("Avatar")->store("public");
+            $nombreDeArchivo = basename($path);
+            $jugadorNuevo->Avatar = $nombreDeArchivo;
+        }
         
         $jugadorNuevo->save();
         return redirect("/agregarJugador");
@@ -69,6 +72,11 @@ class JugadoresController extends Controller
     }
     public function borrarJugador(Request $req,$id){
         $jugador = Jugador::find($id);
+        $jugadoresSiguientes = Jugador::where('Puesto','>',$jugador->Puesto)->get();
+        foreach ($jugadoresSiguientes as $jugadorActual) {
+          $jugadorActual->Puesto--; 
+          $jugadorActual->save();
+        }
         $jugador->delete();
 
         return redirect("/agregarJugador");
