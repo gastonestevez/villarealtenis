@@ -28,3 +28,4 @@ Route::post('/grabarMatch','MatchController@grabarMatch');
 Route::get('/historialMatch','MatchController@listarMatch');
 Route::get('/listado','JugadoresController@listar');
 Route::get('/entorno','EntornoController@show');
+Route::post('/guardarFondo','EntornoController@guardarFondo');

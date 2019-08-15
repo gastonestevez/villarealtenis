@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Jugador;
 use App\Match;
+use App\Entorno;
+
 class JugadoresController extends Controller
 {
     public function agregarJugador(){
@@ -15,7 +17,8 @@ class JugadoresController extends Controller
     public function listar(){
         $jugadores = Jugador::orderBy('Puesto')->get();
         $ultimosMatches = Match::orderBy('created_at','DESC')->limit(3)->get();
-    return view('listadoPartidos',compact('jugadores','ultimosMatches'));
+        $fondo = Entorno::first();
+        return view('listadoPartidos',compact('jugadores','ultimosMatches','fondo'));
     }
 
     public function buscarJugador($id){

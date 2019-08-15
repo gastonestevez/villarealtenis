@@ -8,10 +8,15 @@
 
     <div class="formYtabla">
         <div class="formulario col-md-4 mx-auto">
-            <form action="listadoPartidos">
+            <form action="{{ url('/guardarFondo') }}" method="post">
+                {{ csrf_field() }}
                 <label for="fondo">Ingrese fondo</label>
-                <input type="file" name="fondo" placeholder="Fondo">
-                <button class="btn btn-light d-block mt-4" type="submit" name="cambiarFondo">Modificar</button>
+                <div class="form-group">
+                        <label for="fondo"><i class="fas fa-angle-double-right"></i> Fondo</label><br>
+                        <input name="background" type="file" placeholder="Fondo">
+                </div>
+                <input type="hidden" name="oculto">
+                <button class="btn btn-light d-block mt-4" type="submit">Modificar</button>
             </form>
         </div>
     </div>
