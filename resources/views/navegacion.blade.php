@@ -18,6 +18,7 @@
                     <a class="dropdown-item" href="{{ url('historialMatch') }}">Historial de Partidos</a>
                     <a class="dropdown-item" href="{{ url('match') }}">Match</a>
                     <a class="dropdown-item" href="{{ url('listado') }}">Listado</a>
+                    <a class="dropdown-item" href="{{ url('entorno') }}">Configurar</a>
                     
                 </div>
                         <li class="nav-item">

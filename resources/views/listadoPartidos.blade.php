@@ -2,8 +2,8 @@
 @section('principal')
 <main class=" main-form">
         <div class=formYtabla>
-                <div class=" col-md-6">
-                        <table class="table table-hover table-dark table-striped">
+                <div class=" col-md-4">
+                        <table class="table table-hover table-dark table-striped listadoTabla">
                             <thead>
                                 <tr>
                                     <th>Avatar</th>
@@ -48,29 +48,33 @@
                             @foreach ($ultimosMatches as $match)
                             <tr>
                                 <td>
-                                    {{ $match->created_at }}
+                                    {{ date('d-m-Y',strtotime($match->created_at)) }}
                                 </td>
                                 <td>
-                                    {{ $match->jugador1()->get()->first() }} 
+                                    {{ $match->jugador1()->first()->Nombre }} 
                                 </td>
                                 <td>
-                                    {{ $match->jugador2()->get()->first() }} 
+                                    {{ $match->jugador2()->get()->first()->Nombre }} 
                                 </td>
                                 <td>
                                     {{ $match->set1 }} 
                                 </td>
                                 <td>
                                     {{ $match->set2 }} 
-                        </td>
-                        <td>
-                            {{ $match->set3 }} 
-                        </td>
-                        
+                                </td>
+                                <td>
+                                    {{ $match->set3 }} 
+                                </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </main>
-    <script>
+    
+<script>
+$("body").css("background-image", "url('/storage/{{ $fondo->first()->fondo }}')");
+$("body").css("background-repeat","cover");
+</script>
 @endsection
+

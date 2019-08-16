@@ -17,7 +17,7 @@ class JugadoresController extends Controller
     public function listar(){
         $jugadores = Jugador::orderBy('Puesto')->get();
         $ultimosMatches = Match::orderBy('created_at','DESC')->limit(3)->get();
-        $fondo = Entorno::first();
+        $fondo = Entorno::orderby('created_at','desc')->get();
         return view('listadoPartidos',compact('jugadores','ultimosMatches','fondo'));
     }
 

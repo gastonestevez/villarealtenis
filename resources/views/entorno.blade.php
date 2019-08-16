@@ -8,17 +8,21 @@
 
     <div class="formYtabla">
         <div class="formulario col-md-4 mx-auto">
-            <form action="{{ url('/guardarFondo') }}" method="post">
+            <form action="{{ url('/guardarFondo') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <label for="fondo">Ingrese fondo</label>
                 <div class="form-group">
                         <label for="fondo"><i class="fas fa-angle-double-right"></i> Fondo</label><br>
-                        <input name="background" type="file" placeholder="Fondo">
+                        <input type="file" name="fondo" placeholder="Fondo">
                 </div>
                 <input type="hidden" name="oculto">
                 <button class="btn btn-light d-block mt-4" type="submit">Modificar</button>
             </form>
         </div>
+    </div>
+
+    <div class="formYtabla formulario my-2 mx-auto">
+        <h2>Fondo Actual</h2>
+        <img src="storage/{{ $entornoActual->first()->fondo }}" alt="fondo" width="200">
     </div>
 
 

@@ -8,18 +8,18 @@ use App\Entorno;
 class EntornoController extends Controller
 {
     public function show(){
-        return View('entorno');
+        $entornoActual = Entorno::orderby('created_at','desc')->get();
+
+        return View('entorno',compact('entornoActual'));
     }
 
     public function guardarFondo(Request $req){
-        dd($req);
-        if($req->file("background")!= null){
+        if($req->file("fondo")!= null){
             $entorno = new Entorno();
-            $path = $req->file("background")->store("public");
+            $path = $req->file("fondo")->store("public");
             $nombreDeArchivo = basename($path);
             $entorno->fondo = $nombreDeArchivo;
             $entorno->save();
-            dd('aca termina');
         }
         return redirect('listado');
     }

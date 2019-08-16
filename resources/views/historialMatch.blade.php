@@ -31,7 +31,7 @@
                         @foreach ($matches as $match)
                         <tr>
                             <td>
-                                {{ $match->created_at }}
+                                {{date('d-m-Y',strtotime($match->created_at)) }}
                             </td>
                             <td>
                                 {{ $match->jugador1()->get()->first()->Nombre }} 

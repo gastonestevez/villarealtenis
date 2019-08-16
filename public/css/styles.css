@@ -22,7 +22,9 @@
     border: .05rem solid #fff;
   }
   
-  
+  th,tbody{
+    text-align: center;
+  }
   /*
    * Base structure
    */
@@ -136,6 +138,10 @@
     width: 50%;
     height: 700px;
     overflow-y: scroll;
+  }
+
+  .listadoTabla{
+    opacity: 0.93;
   }
   
   main .matchForm{
