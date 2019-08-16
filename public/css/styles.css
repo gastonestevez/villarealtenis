@@ -179,6 +179,9 @@
     display: block;
   }
   
+  table,tbody{
+    margin-top: 3px;
+  }
   /*
   Modal
   */

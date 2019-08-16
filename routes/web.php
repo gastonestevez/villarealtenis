@@ -15,17 +15,21 @@ Route::get('/editor', function () {
     return view('editor');
 });
 
-Route::get('/agregarJugador', 'JugadoresController@agregarJugador');
-Route::post('/agregarJugador', 'JugadoresController@grabarJugador');
+Route::get('/agregarJugador', 'JugadoresController@agregarJugador')->middleware('admin');
+Route::post('/agregarJugador', 'JugadoresController@grabarJugador')->middleware('admin');
 
-Route::get('/editarJugador/{id}', 'JugadoresController@editarJugador');
-Route::post('/editarJugador/{id}', 'JugadoresController@actualizarJugador');
+Route::get('/editarJugador/{id}', 'JugadoresController@editarJugador')->middleware('admin');
+Route::post('/editarJugador/{id}', 'JugadoresController@actualizarJugador')->middleware('admin');
 
-Route::post('/borrarJugador/{id}', 'JugadoresController@borrarJugador');
+Route::post('/borrarJugador/{id}', 'JugadoresController@borrarJugador')->middleware('admin');
 
-Route::get('/match', 'MatchController@showMatch');
-Route::post('/grabarMatch','MatchController@grabarMatch');
-Route::get('/historialMatch','MatchController@listarMatch');
+Route::get('/match', 'MatchController@showMatch')->middleware('admin');
+Route::post('/grabarMatch','MatchController@grabarMatch')->middleware('admin');
+Route::get('/historialMatch','MatchController@listarMatch')->middleware('admin');
 Route::get('/listado','JugadoresController@listar');
-Route::get('/entorno','EntornoController@show');
-Route::post('/guardarFondo','EntornoController@guardarFondo');
+Route::get('/entorno','EntornoController@show')->middleware('admin');
+Route::post('/guardarFondo','EntornoController@guardarFondo')->middleware('admin');
+Auth::routes();
+Route::get('/','JugadoresController@listar');
+
+Route::get('/home', 'HomeController@index')->name('home');
