@@ -5,6 +5,9 @@
     font-family: 'Roboto', sans-serif;
    }
   
+   html {
+    scroll-behavior: smooth;
+  }
   /* Links */
   a,
   a:focus,
@@ -255,3 +258,5 @@
   .mastfoot {
     color: rgba(255, 255, 255, .5);
   }
+
+  

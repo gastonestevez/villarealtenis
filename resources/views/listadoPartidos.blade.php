@@ -12,21 +12,7 @@
                                 </tr>
                             </thead>
                             <tbody id="myTable2">
-                                @foreach ($jugadores as $jugador)
-                                <tr>
-                                    <td>
-                                        <?php if(!empty($jugador->Avatar)): ?>
-                                       <img class="avatar" src="{{ $jugador->Avatar }}" alt="avatar"> 
-                                       <?php endif ?>
-                                    </td>
-                                    <td class="j2nombre">
-                                        {{ $jugador->Nombre }} 
-                                    </td>
-                                    <td class="j2puesto">
-                                        {{ $jugador->Puesto }}
-                                    </td>
-                                </tr>
-                            @endforeach
+                               
                         </tbody>
                     </table>
                 </div>
@@ -75,6 +61,43 @@
 <script>
 $("body").css("background-image", "url('/storage/{{ $fondo->first()->fondo }}')");
 $("body").css("background-repeat","cover");
-</script>
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+    var listado;
+  function updateTable(){
+    $.ajax({
+      type : 'get',
+      url : '{{URL::to('obtenerJugadores')}}',
+      success:function(data){
+          listado = JSON.parse(data);
+      }
+      });
+  }
+  updateTable();
+  setInterval(function() {
+    var i = 0;
+    $('#myTable2').html(' ');      
+    while(i<10 && listado.length>0){
+        console.log(listado[0].Nombre);
+        var row = $("<tr />");
+        $('#myTable2').append(row);
+        row.append($("<td><img src=/storage/"+listado[0].Avatar+"></td>"));
+        row.append($("<td>" + listado[0].Nombre+"</td>"));
+        row.append($("<td>" + listado[0].Puesto+"</td>"));
+        listado.shift();
+        i++;
+    }
+    if(listado.length==0){
+        updateTable();
+    }
+
+}, 4000);
+});
+
+  </script>
+  <script type="text/javascript">
+  $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+  </script>
 @endsection
 

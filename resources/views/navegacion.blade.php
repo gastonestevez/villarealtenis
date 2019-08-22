@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ url("/login") }}">
-            <img src="logo.png" width="35px" alt="logo">
+            <img src="{{ url('/logo.png') }}" width="35px" alt="logo">
           </a>
       <a class="navbar-brand" href="{{ url('listado') }}">Villa Real Tenis</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

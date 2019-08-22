@@ -21,6 +21,11 @@ class JugadoresController extends Controller
         return view('listadoPartidos',compact('jugadores','ultimosMatches','fondo'));
     }
 
+    public function obtenerJugadores(){
+        $jugadores = Jugador::orderBy('Puesto')->get();
+        return Response($jugadores->toJson());
+    }
+
     public function buscarJugador($id){
 
     }

@@ -31,5 +31,5 @@ Route::get('/entorno','EntornoController@show')->middleware('admin');
 Route::post('/guardarFondo','EntornoController@guardarFondo')->middleware('admin');
 Auth::routes();
 Route::get('/','JugadoresController@listar');
-
+Route::get('/obtenerJugadores','JugadoresController@obtenerJugadores');
 Route::get('/home', 'HomeController@index')->name('home');
