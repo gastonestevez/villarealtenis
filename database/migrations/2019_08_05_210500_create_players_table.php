@@ -21,7 +21,7 @@ class CreatePlayersTable extends Migration
             $table->string('Telefono')->nullable();
             $table->string('Instagram')->nullable();
             $table->string('Email')->nullable();
-            $table->string('Avatar')->nullable();
+            $table->string('Avatar')->nullable()->default('sinimagen.png');
             $table->date('Cumple')->nullable();
             $table->timestamps();
         });

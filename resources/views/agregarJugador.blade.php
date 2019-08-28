@@ -14,7 +14,7 @@
                     <h4><i class="fas fa-edit"></i> Formulario</h4>
                 <div class="form-group">
                     <label for="nombre"><i class="fas fa-angle-double-right"></i> Nombre</label><br>
-                    <input name="Nombre" class="form-control" type="text" placeholder="Nombre" require>
+                    <input name="Nombre" class="form-control" type="text" placeholder="Nombre" required>
                 </div>
                 <div class="form-group">
                         <label for="cumple"><i class="fas fa-angle-double-right"></i> Cumple</label><br>
@@ -70,7 +70,7 @@
                             {{ $jugador->Puesto }}
                         </td>
                         <td>
-                            <img class="avatar" src="/storage/{{ $jugador->Avatar }}" alt="avatar"> 
+                            <div class="cajaAvatar"><img src="/storage/{{ $jugador->Avatar }}" alt="avatar"></div> 
                         </td>
                         <td>
                             {{ $jugador->Nombre }} 

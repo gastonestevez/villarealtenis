@@ -1,8 +1,8 @@
 @extends('plantilla')
 @section('principal')
-<main class=" main-form">
-        <div class=formYtabla>
-                <div class=" col-md-4">
+<main class="listadoPrincipal main-form col-sm-12">
+        <div class="col-sm-12 formYtabla container-fluid row">
+                <div class="col-sm-12 col-md-4">
                         <table class="table table-hover table-dark table-striped listadoTabla">
                             <thead>
                                 <tr>
@@ -17,8 +17,8 @@
                     </table>
                 </div>
 
-            <div class=" col-md-6">
-                <table class="table table-hover table-dark table-striped">
+            <div class="col-sm-12 col-md-6 tablaUltimos3partidos">
+                <table class="table table-hover table-dark table-striped listadoTabla">
                         <thead>
                             <tr>
                                 <th>Fecha de carga</th>
@@ -37,9 +37,15 @@
                                     {{ date('d-m-Y',strtotime($match->created_at)) }}
                                 </td>
                                 <td>
+                                    @if($match->ganador == $match->idj1)
+                                    <i class="fas fa-trophy"></i>
+                                    @endif
                                     {{ $match->jugador1()->first()->Nombre }} 
                                 </td>
                                 <td>
+                                    @if($match->ganador == $match->idj2)
+                                    <i class="fas fa-trophy"></i>
+                                    @endif
                                     {{ $match->jugador2()->get()->first()->Nombre }} 
                                 </td>
                                 <td>
@@ -55,6 +61,7 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
         </div>
     </main>
     
@@ -79,12 +86,17 @@ $( document ).ready(function() {
     var i = 0;
     $('#myTable2').html(' ');      
     while(i<10 && listado.length>0){
-        console.log(listado[0].Nombre);
+        //console.log(listado[0].Nombre);
         var row = $("<tr />");
         $('#myTable2').append(row);
-        row.append($("<td><img src=/storage/"+listado[0].Avatar+"></td>"));
-        row.append($("<td>" + listado[0].Nombre+"</td>"));
-        row.append($("<td>" + listado[0].Puesto+"</td>"));
+        row.append($("<td><div class='cajaAvatar'><img src=/storage/"+listado[0].Avatar+"></div></td>"));
+        if(listado[0].Puesto <= 16){
+            row.append($("<td style=\"color:orange;\">" + listado[0].Nombre+"</td>"));
+            row.append($("<td style=\"color:orange;\">" + listado[0].Puesto+"</td>"));
+        }else{
+            row.append($("<td>" + listado[0].Nombre+"</td>"));
+            row.append($("<td>" + listado[0].Puesto+"</td>"));
+        }
         listado.shift();
         i++;
     }
@@ -92,8 +104,9 @@ $( document ).ready(function() {
         updateTable();
     }
 
-}, 4000);
+}, 3000);
 });
+
 
   </script>
   <script type="text/javascript">

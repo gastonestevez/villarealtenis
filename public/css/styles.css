@@ -15,6 +15,9 @@
     color: #fff;
   }
   
+  #h1jugador1,#h1jugador2{
+    text-align: center;
+  }
   /* Custom default button */
   .btn-secondary,
   .btn-secondary:hover,
@@ -25,7 +28,20 @@
     border: .05rem solid #fff;
   }
   
-  th,tbody{
+  .cajaAvatar{
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+  }
+  .cajaAvatar img{
+    display: block;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+  }
+  th,td,tbody{
     text-align: center;
   }
   /*
@@ -85,16 +101,16 @@
       display:flex;
       align-content: space-between;
   }
-  
+  main.listadoPrincipal{
+    height: 592px;
+  }
   main .descripcion{
     margin-top: 25px;
     margin-bottom: 10px;
     border-radius: 10px;
     background-color: #222222;
     padding: 10px;
-  
-    
-  }
+ }
   
   main .formYtabla{
     display: flex;
@@ -138,13 +154,12 @@
     background-color: #222222;
     border-radius: 10px;
     padding: 10px;
-    width: 50%;
     height: 700px;
     overflow-y: scroll;
   }
 
   .listadoTabla{
-    opacity: 0.93;
+    opacity: 0.83;
   }
   
   main .matchForm{
@@ -194,7 +209,7 @@
   }
   
   td{
-    font-size: 16px;
+    font-size: 14px;
   }
   
   /*
@@ -257,6 +272,12 @@
    */
   .mastfoot {
     color: rgba(255, 255, 255, .5);
+  }
+
+  @media (max-width: 425px){
+    .tablaUltimos3partidos{
+      display: none;
+    }
   }
 
   

@@ -16,7 +16,7 @@ class JugadoresController extends Controller
     }
     public function listar(){
         $jugadores = Jugador::orderBy('Puesto')->get();
-        $ultimosMatches = Match::orderBy('created_at','DESC')->limit(3)->get();
+        $ultimosMatches = Match::orderBy('created_at','DESC')->limit(7)->get();
         $fondo = Entorno::orderby('created_at','desc')->get();
         return view('listadoPartidos',compact('jugadores','ultimosMatches','fondo'));
     }
@@ -45,6 +45,8 @@ class JugadoresController extends Controller
             $path = $req->file("Avatar")->store("public");
             $nombreDeArchivo = basename($path);
             $jugadorNuevo->Avatar = $nombreDeArchivo;
+        }else{
+            $jugadorNuevo->Avatar = "sinimagen.png";
         }
         
 

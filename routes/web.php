@@ -33,3 +33,7 @@ Auth::routes();
 Route::get('/','JugadoresController@listar');
 Route::get('/obtenerJugadores','JugadoresController@obtenerJugadores');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/storage',function(){
+    Artisan::call('storage:link');
+});
