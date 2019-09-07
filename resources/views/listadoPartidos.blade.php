@@ -18,7 +18,7 @@
                 </div>
 
             <div class="col-sm-12 col-md-6 tablaUltimos3partidos">
-                <table class="table table-hover table-dark table-striped">
+                <table class="table table-hover table-dark table-striped listadoTabla">
                         <thead>
                             <tr>
                                 <th>Fecha de carga</th>
@@ -37,9 +37,15 @@
                                     {{ date('d-m-Y',strtotime($match->created_at)) }}
                                 </td>
                                 <td>
+                                    @if($match->ganador == $match->idj1)
+                                    <i class="fas fa-trophy"></i>
+                                    @endif
                                     {{ $match->jugador1()->first()->Nombre }} 
                                 </td>
                                 <td>
+                                    @if($match->ganador == $match->idj2)
+                                    <i class="fas fa-trophy"></i>
+                                    @endif
                                     {{ $match->jugador2()->get()->first()->Nombre }} 
                                 </td>
                                 <td>
