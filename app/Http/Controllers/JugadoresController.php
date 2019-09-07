@@ -87,7 +87,9 @@ class JugadoresController extends Controller
           $jugadorActual->Puesto--; 
           $jugadorActual->save();
         }
-        $jugador->delete();
+        $jugador->visible = false;
+        $jugador->save();
+        //$jugador->delete();
 
         return redirect("/agregarJugador");
     }

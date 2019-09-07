@@ -65,24 +65,26 @@
                     </thead>
                     <tbody id="myTable">
                         @foreach ($jugadores as $jugador)
-                        <tr>
-                        <td>
-                            {{ $jugador->Puesto }}
-                        </td>
-                        <td>
-                            <div class="cajaAvatar"><img src="/storage/{{ $jugador->Avatar }}" alt="avatar"></div> 
-                        </td>
-                        <td>
-                            {{ $jugador->Nombre }} 
-                        </td>
-                        <td>
-                            {{ $jugador->Telefono }}
-                        </td>
-                        <td>
-                            <a href="{{ url('editarJugador/'.$jugador->id) }}"><i class="fas fa-edit"></i></a>
-                            <a href="#" id="{{ $jugador->id }}" class="borrarJugador"><i class="fas fa-times-circle"></i></a>
-                        </td>
-                    </tr>
+                            @if($jugador->visible != 0)
+                                <tr>
+                                    <td>
+                                        {{ $jugador->Puesto }}
+                                    </td>
+                                    <td>
+                                        <div class="cajaAvatar"><img src="/storage/{{ $jugador->Avatar }}" alt="avatar"></div> 
+                                    </td>
+                                    <td>
+                                        {{ $jugador->Nombre }} 
+                                    </td>
+                                    <td>
+                                        {{ $jugador->Telefono }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('editarJugador/'.$jugador->id) }}"><i class="fas fa-edit"></i></a>
+                                        <a href="#" id="{{ $jugador->id }}" class="borrarJugador"><i class="fas fa-times-circle"></i></a>
+                                    </td>
+                                </tr>
+                            @endif
                     @endforeach
                 </tbody>
             </table>

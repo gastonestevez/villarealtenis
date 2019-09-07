@@ -40,13 +40,17 @@
                                     @if($match->ganador == $match->idj1)
                                     <i class="fas fa-trophy"></i>
                                     @endif
-                                    {{ $match->jugador1()->first()->Nombre }} 
+                                    @if($match->jugador1()->first()!=null)
+                                    {{ $match->jugador1()->first()->Nombre }}
+                                    @endif 
                                 </td>
                                 <td>
                                     @if($match->ganador == $match->idj2)
                                     <i class="fas fa-trophy"></i>
                                     @endif
-                                    {{ $match->jugador2()->get()->first()->Nombre }} 
+                                    @if($match->jugador1()->first()!=null)
+                                    {{ $match->jugador2()->get()->first()->Nombre }}
+                                    @endif 
                                 </td>
                                 <td>
                                     {{ $match->set1 }} 
@@ -87,15 +91,17 @@ $( document ).ready(function() {
     $('#myTable2').html(' ');      
     while(i<10 && listado.length>0){
         //console.log(listado[0].Nombre);
-        var row = $("<tr />");
-        $('#myTable2').append(row);
-        row.append($("<td><div class='cajaAvatar'><img src=/storage/"+listado[0].Avatar+"></div></td>"));
-        if(listado[0].Puesto <= 16){
-            row.append($("<td style=\"color:orange;\">" + listado[0].Nombre+"</td>"));
-            row.append($("<td style=\"color:orange;\">" + listado[0].Puesto+"</td>"));
-        }else{
-            row.append($("<td>" + listado[0].Nombre+"</td>"));
-            row.append($("<td>" + listado[0].Puesto+"</td>"));
+        if(listado[0].visible != 0){
+            var row = $("<tr />");
+            $('#myTable2').append(row);
+            row.append($("<td><div class='cajaAvatar'><img src=/storage/"+listado[0].Avatar+"></div></td>"));
+            if(listado[0].Puesto <= 16){
+                row.append($("<td style=\"color:orange;\">" + listado[0].Nombre+"</td>"));
+                row.append($("<td style=\"color:orange;\">" + listado[0].Puesto+"</td>"));
+            }else{
+                row.append($("<td>" + listado[0].Nombre+"</td>"));
+                row.append($("<td>" + listado[0].Puesto+"</td>"));
+            }
         }
         listado.shift();
         i++;
