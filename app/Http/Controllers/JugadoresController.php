@@ -33,7 +33,14 @@ class JugadoresController extends Controller
         $jugadorNuevo = new Jugador();
         $jugadorNuevo->Nombre = $req['Nombre'];
         if(empty($req['Puesto'])){
-            $jugadorNuevo->Puesto = Jugador::max('Puesto')+1;    
+            $jugadorNuevo->Puesto = Jugador::where('visible',1)->max('Puesto')+1;    
+        }else if(Jugador::where('Puesto',$req['Puesto'])->get()){
+            $jugadoresSiguientes = Jugador::where('Puesto','>=',$req['Puesto'])->get();
+            foreach ($jugadoresSiguientes as $jugadorActual) {
+              $jugadorActual->Puesto++; 
+              $jugadorActual->save();
+            }
+            $jugadorNuevo->Puesto = $req['Puesto'];
         }else{
             $jugadorNuevo->Puesto = $req['Puesto'];
         }
@@ -41,6 +48,7 @@ class JugadoresController extends Controller
         $jugadorNuevo->Email = $req['Email'];
         $jugadorNuevo->Instagram = $req['Instagram'];
         $jugadorNuevo->Cumple = $req['Cumple'];
+        $jugadorNuevo->visible = 1;
         if($req->file("Avatar") != null){
             $path = $req->file("Avatar")->store("public");
             $nombreDeArchivo = basename($path);
@@ -65,6 +73,13 @@ class JugadoresController extends Controller
     public function actualizarJugador(Request $req,$id){
         $jugadorNuevo = Jugador::find($id);
         $jugadorNuevo->Nombre = $req['Nombre'];
+        if($jugadorNuevo->Puesto != $req['Puesto']){
+            $jugadoresSiguientes = Jugador::where('Puesto','>=',$req['Puesto'])->get();
+            foreach ($jugadoresSiguientes as $jugadorActual) {
+              $jugadorActual->Puesto++; 
+              $jugadorActual->save();
+            }    
+        }
         $jugadorNuevo->Puesto = $req['Puesto'];
         $jugadorNuevo->Telefono = $req['Telefono'];
         $jugadorNuevo->Email = $req['Email'];
