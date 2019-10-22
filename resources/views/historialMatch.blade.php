@@ -34,10 +34,14 @@
                                 {{date('d-m-Y',strtotime($match->created_at)) }}
                             </td>
                             <td>
-                                {{ $match->jugador1()->get()->first()->Nombre }} 
+                            @if($match->jugador1()->first()!=null)
+                                {{ $match->jugador1()->get()->first()->Nombre }}
+                            @endif
                             </td>
                             <td>
+                            @if($match->jugador2()->first()!=null)
                                 {{ $match->jugador2()->get()->first()->Nombre }} 
+                            @endif
                             </td>
                             <td>
                                 {{ $match->set1 }} 
