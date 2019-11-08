@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/editor', function () {
     return view('editor');
 });
@@ -26,6 +27,12 @@ Route::post('/borrarJugador/{id}', 'JugadoresController@borrarJugador')->middlew
 Route::get('/match', 'MatchController@showMatch')->middleware('admin');
 Route::post('/grabarMatch','MatchController@grabarMatch')->middleware('admin');
 Route::get('/historialMatch','MatchController@listarMatch')->middleware('admin');
+
+Route::get('/abmMatch','MatchController@abmMatch')->middleware('admin'); //TODO
+Route::post('/modificarMatch','MatchController@modificarMatch')->middleware('admin'); //TODO
+Route::post('/guardarMatchModificado','MatchController@guardarMatchModificado')->middleware('admin'); //TODO
+
+
 Route::get('/listado','JugadoresController@listar');
 Route::get('/entorno','EntornoController@show')->middleware('admin');
 Route::post('/guardarFondo','EntornoController@guardarFondo')->middleware('admin');

@@ -17,9 +17,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ url('agregarJugador') }}">Altas / Bajas de Jugadores</a>
+                    <a class="dropdown-item" href="{{ url('match') }}">Crear Partido</a>
+                    <a class="dropdown-item" href="{{ url('abmMatch') }}">Modificar Partidos</a>
                     <a class="dropdown-item" href="{{ url('historialMatch') }}">Historial de Partidos</a>
-                    <a class="dropdown-item" href="{{ url('match') }}">Match</a>
-                    <a class="dropdown-item" href="{{ url('listado') }}">Listado</a>
+                    <a class="dropdown-item" href="{{ url('listado') }}">Presentacion</a>
                     <a class="dropdown-item" href="{{ url('entorno') }}">Configurar</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -29,7 +30,7 @@
 
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                          @csrf
-                     </form>  
+                     </form>
                 </div>
           </li>
           @endguest

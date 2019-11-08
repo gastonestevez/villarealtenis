@@ -1,6 +1,6 @@
 @extends("plantilla")
 @section("principal")
-<main class="container main-form"> 
+<main class="container main-form">
         <div class="descripcion col-md-12">
             <h1><i class="fas fa-user"></i> Realizar Match</h1>
             <p><i class="fas fa-pen"></i> Seleccione dos jugadores que desee enfrentar</p>
@@ -25,17 +25,19 @@
                     </thead>
                     <tbody id="myTable1">
                         @foreach ($jugadores as $jugador)
-                        <tr>
-                        <td class="j1puesto">
-                            {{ $jugador->Puesto }}
-                        </td>
-                        <td class="j1nombre">
-                            {{ $jugador->Nombre }} 
-                        </td>
-                        <td>
-                            <button id="{{ $jugador->id }}" class="botTabla1 btn btn-light">Seleccionar</button>
-                        </td>
-                    </tr>
+                             @unless(!$jugador->visible)
+                            <tr>
+                            <td class="j1puesto">
+                                {{ $jugador->Puesto }}
+                            </td>
+                            <td class="j1nombre">
+                                {{ $jugador->Nombre }}
+                            </td>
+                            <td>
+                                <button id="{{ $jugador->id }}" class="botTabla1 btn btn-light">Seleccionar</button>
+                            </td>
+                        </tr>
+                            @endunless
                     @endforeach
                 </tbody>
             </table>
@@ -56,7 +58,7 @@
                         <label for="set2">Set 2</label>
                         <input name="set2" class="form-control" type="text">
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="set3">Set 3</label>
                         <input name="set3" class="form-control" type="text">
                     </div>
@@ -73,6 +75,10 @@
                               Jugador 2
                             </label>
                           </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" class="form-control" name="fecha" required>
+                    </div>
                     <input type="hidden" id="inputIdJugador1" name="inputIdJugador1" value="1">
                     <input type="hidden" id="inputIdJugador2" name="inputIdJugador2" value="2">
                     <input type="submit" class="confirmar btn btn-light w-100 mt-3" value="Cargar resultados"/>
@@ -97,17 +103,19 @@
                     </thead>
                     <tbody id="myTable2">
                         @foreach ($jugadores as $jugador)
-                        <tr>
-                        <td class="j2puesto">
-                            {{ $jugador->Puesto }}
-                        </td>
-                        <td class="j2nombre">
-                            {{ $jugador->Nombre }} 
-                        </td>
-                        <td>
-                            <button id="{{ $jugador->id }}" class="botTabla2 btn btn-light">Seleccionar</button>
-                        </td>
-                    </tr>
+                            @unless(!$jugador->visible)
+                                <tr>
+                                    <td class="j2puesto">
+                                        {{ $jugador->Puesto }}
+                                    </td>
+                                    <td class="j2nombre">
+                                        {{ $jugador->Nombre }}
+                                    </td>
+                                    <td>
+                                        <button id="{{ $jugador->id }}" class="botTabla2 btn btn-light">Seleccionar</button>
+                                    </td>
+                                </tr>
+                            @endunless
                     @endforeach
                 </tbody>
             </table>
@@ -165,13 +173,13 @@
                     $("#h1jugador2").text(jugador2.nombre);
                     cargarNombreLabel();
                   });
-                
+
                   $("input[name='radioGanador']").change(function(){
-        
+
                 });
 
                   $(".confirmar").on("click",function(){
-                    
+
                   });
         });
 </script>

@@ -6,7 +6,7 @@
         <p><i class="fas fa-pen"></i> En esta seccion puede visualizar los partidos.</p>
     </div>
     <div class=formYtabla>
-        
+
         <div class="tabla col-md-12">
             <h4><i class="fas fa-edit"></i> Partidos</h4>
             <div class="formulario">
@@ -24,11 +24,12 @@
                             <th>Set 1</th>
                             <th>Set 2</th>
                             <th>Set 3</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody id="myTable1">
                         @foreach ($matches as $match)
+                            @unless(!$match->visible)
                         <tr>
                             <td>
                                 {{date('d-m-Y',strtotime($match->created_at)) }}
@@ -40,20 +41,21 @@
                             </td>
                             <td>
                             @if($match->jugador2()->first()!=null)
-                                {{ $match->jugador2()->get()->first()->Nombre }} 
+                                {{ $match->jugador2()->get()->first()->Nombre }}
                             @endif
                             </td>
                             <td>
-                                {{ $match->set1 }} 
+                                {{ $match->set1 }}
                             </td>
                             <td>
-                                {{ $match->set2 }} 
+                                {{ $match->set2 }}
                     </td>
                     <td>
-                        {{ $match->set3 }} 
+                        {{ $match->set3 }}
                     </td>
-                    
+
                 </tr>
+                        @endunless
                 @endforeach
             </tbody>
         </table>
