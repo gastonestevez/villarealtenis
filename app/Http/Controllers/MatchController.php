@@ -15,7 +15,7 @@ class MatchController extends Controller
     }
 
     public function abmMatch(){
-        $matches = Match::orderBy('created_at')->get();
+        $matches = Match::orderBy('fecha','desc')->get();
         return view('abmMatches',compact('matches'));
     }
 
@@ -138,7 +138,7 @@ class MatchController extends Controller
     }
 
     public function listarMatch(){
-        $matches = Match::orderBy('created_at')->get();
+        $matches = Match::orderBy('fecha','desc')->get();
 
         return view('historialMatch',compact('matches'));
     }

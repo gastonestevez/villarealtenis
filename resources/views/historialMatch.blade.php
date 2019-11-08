@@ -32,7 +32,7 @@
                             @unless(!$match->visible)
                         <tr>
                             <td>
-                                {{date('d-m-Y',strtotime($match->created_at)) }}
+                                {{date('d-m-Y',strtotime($match->fecha)) }}
                             </td>
                             <td>
                             @if($match->ganador == $match->idj1)
