@@ -12,7 +12,7 @@
                                 </tr>
                             </thead>
                             <tbody id="myTable2">
-                               
+
                         </tbody>
                     </table>
                 </div>
@@ -27,14 +27,14 @@
                                 <th>Set 1</th>
                                 <th>Set 2</th>
                                 <th>Set 3</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody id="myTable1">
                             @foreach ($ultimosMatches as $match)
                             <tr>
                                 <td>
-                                    {{ date('d-m-Y',strtotime($match->created_at)) }}
+                                    {{ date('d-m-Y',strtotime($match->fecha)) }}
                                 </td>
                                 <td>
                                     @if($match->ganador == $match->idj1)
@@ -42,7 +42,7 @@
                                     @endif
                                     @if($match->jugador1()->first()!=null)
                                     {{ $match->jugador1()->first()->Nombre }}
-                                    @endif 
+                                    @endif
                                 </td>
                                 <td>
                                     @if($match->ganador == $match->idj2)
@@ -50,16 +50,16 @@
                                     @endif
                                     @if($match->jugador1()->first()!=null)
                                     {{ $match->jugador2()->get()->first()->Nombre }}
-                                    @endif 
+                                    @endif
                                 </td>
                                 <td>
-                                    {{ $match->set1 }} 
+                                    {{ $match->set1 }}
                                 </td>
                                 <td>
-                                    {{ $match->set2 }} 
+                                    {{ $match->set2 }}
                                 </td>
                                 <td>
-                                    {{ $match->set3 }} 
+                                    {{ $match->set3 }}
                                 </td>
                     </tr>
                     @endforeach
@@ -68,7 +68,7 @@
         </div>
         </div>
     </main>
-    
+
 <script>
 $("body").css("background-image", "url('/storage/{{ $fondo->first()->fondo }}')");
 $("body").css("background-repeat","cover");
@@ -88,7 +88,7 @@ $( document ).ready(function() {
   updateTable();
   setInterval(function() {
     var i = 0;
-    $('#myTable2').html(' ');      
+    $('#myTable2').html(' ');
     while(i<10 && listado.length>0){
         //console.log(listado[0].Nombre);
         if(listado[0].visible != 0){

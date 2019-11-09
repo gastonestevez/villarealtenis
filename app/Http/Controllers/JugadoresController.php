@@ -11,12 +11,12 @@ class JugadoresController extends Controller
 {
     public function agregarJugador(){
         $jugadores = Jugador::orderBy('Puesto')->get();
-      
+
         return view('agregarJugador',compact('jugadores'));
     }
     public function listar(){
         $jugadores = Jugador::orderBy('Puesto')->get();
-        $ultimosMatches = Match::orderBy('created_at','DESC')->limit(7)->get();
+        $ultimosMatches = Match::orderBy('fecha','DESC')->limit(10)->get();
         $fondo = Entorno::orderby('created_at','desc')->get();
         return view('listadoPartidos',compact('jugadores','ultimosMatches','fondo'));
     }
@@ -33,11 +33,11 @@ class JugadoresController extends Controller
         $jugadorNuevo = new Jugador();
         $jugadorNuevo->Nombre = $req['Nombre'];
         if(empty($req['Puesto'])){
-            $jugadorNuevo->Puesto = Jugador::where('visible',1)->max('Puesto')+1;    
+            $jugadorNuevo->Puesto = Jugador::where('visible',1)->max('Puesto')+1;
         }else if(Jugador::where('Puesto',$req['Puesto'])->get()){
             $jugadoresSiguientes = Jugador::where('Puesto','>=',$req['Puesto'])->get();
             foreach ($jugadoresSiguientes as $jugadorActual) {
-              $jugadorActual->Puesto++; 
+              $jugadorActual->Puesto++;
               $jugadorActual->save();
             }
             $jugadorNuevo->Puesto = $req['Puesto'];
@@ -56,7 +56,7 @@ class JugadoresController extends Controller
         }else{
             $jugadorNuevo->Avatar = "sinimagen.png";
         }
-        
+
 
         $jugadorNuevo->save();
         return redirect("/agregarJugador");
@@ -76,9 +76,9 @@ class JugadoresController extends Controller
         if($jugadorNuevo->Puesto != $req['Puesto']){
             $jugadoresSiguientes = Jugador::where('Puesto','>=',$req['Puesto'])->get();
             foreach ($jugadoresSiguientes as $jugadorActual) {
-              $jugadorActual->Puesto++; 
+              $jugadorActual->Puesto++;
               $jugadorActual->save();
-            }    
+            }
         }
         $jugadorNuevo->Puesto = $req['Puesto'];
         $jugadorNuevo->Telefono = $req['Telefono'];
@@ -90,7 +90,7 @@ class JugadoresController extends Controller
             $nombreDeArchivo = basename($path);
             $jugadorNuevo->Avatar = $nombreDeArchivo;
         }
-        
+
         $jugadorNuevo->save();
         return redirect("/agregarJugador");
 
@@ -99,7 +99,7 @@ class JugadoresController extends Controller
         $jugador = Jugador::find($id);
         $jugadoresSiguientes = Jugador::where('Puesto','>',$jugador->Puesto)->get();
         foreach ($jugadoresSiguientes as $jugadorActual) {
-          $jugadorActual->Puesto--; 
+          $jugadorActual->Puesto--;
           $jugadorActual->save();
         }
         $jugador->visible = false;
