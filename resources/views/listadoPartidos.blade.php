@@ -110,7 +110,7 @@ $( document ).ready(function() {
         updateTable();
     }
 
-}, 3000);
+}, 6000);
 });
 
 
